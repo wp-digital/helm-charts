@@ -6,4 +6,4 @@
 .vscode/
 
 # Charts
-charts/
+charts/*.tgz
