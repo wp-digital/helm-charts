@@ -1,0 +1,28 @@
+{{- if .Values.cronSchedule }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "common.names.fullname" . }}-cron
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.cronSchedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: {{ include "common.names.fullname" . }}-cron
+              image: {{ include "wp-project-skeleton.image" . }}
+              imagePullPolicy: IfNotPresent
+              envFrom:
+                - configMapRef:
+                    name: {{ include "common.names.fullname" }}-env
+                - secretRef:
+                    name: {{ include "common.names.fullname" }}-secret
+              command:
+              - /bin/sh
+              - -c
+              - /usr/src/html/bin/run-wp-cron
+          restartPolicy: OnFailure
+{{- end }}
