@@ -7,6 +7,6 @@ dependencies:
   version: 17.11.2
 - name: newrelic-php-agent
   repository: https://wp-digital.github.io/helm-charts
-  version: 0.x.x
-digest: sha256:21f30486cf7cff758eb1be4761997675cfeb7cb67cfc7beac3e12444fa09b5c2
-generated: "2023-05-20T23:10:15.176065+03:00"
+  version: 0.1.1
+digest: sha256:b9544fb6da1a8908940021909dce730360aeda4eba2a7efc5814b8687a0ba00d
+generated: "2023-05-20T23:27:05.65772+03:00"
