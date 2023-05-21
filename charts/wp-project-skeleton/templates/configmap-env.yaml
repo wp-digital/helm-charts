@@ -68,10 +68,6 @@ data:
   {{- else }}
   NEWRELIC_DAEMON_ADDRESS: "{{ .Release.Name }}-newrelic-php-agent:{{ index .Values "newrelic-php-agent" "service" "port" }}"
   {{- end }}
-  {{- if .Values.app.newrelicLicense }}
-  {{- end }}
-  {{- if .Values.app.newrelicAppName }}
-  {{- end }}
   {{- if .Values.app.inncognitoDomain }}
   INNCOGNITO_DOMAIN: {{ .Values.app.inncognitoDomain }}
   {{- include "wp-project-skeleton.awsRegion" (list "INNCOGNITO_REGION" .Values.app.inncognitoRegion) }}
