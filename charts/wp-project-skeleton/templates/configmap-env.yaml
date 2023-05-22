@@ -77,7 +77,7 @@ data:
   {{- end }}
   {{- if .Values.app.inncognitoDomain }}
   INNCOGNITO_DOMAIN: {{ .Values.app.inncognitoDomain }}
-  {{ include "wp-project-skeleton.awsRegion" (list "INNCOGNITO_REGION" .Values.app.inncognitoRegion) }}
+  {{ include "wp-project-skeleton.awsRegion" (list "INNCOGNITO_REGION" .Values.app.inncognitoRegion .Values.app.awsRegion) }}
   {{- if .Values.app.inncognitoRedirectUri }}
   INNCOGNITO_REDIRECT_URI: {{ .Values.app.inncognitoRedirectUri }}
   {{- end }}
