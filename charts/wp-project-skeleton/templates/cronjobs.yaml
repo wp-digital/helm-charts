@@ -17,9 +17,9 @@ spec:
               imagePullPolicy: IfNotPresent
               envFrom:
                 - configMapRef:
-                    name: {{ include "common.names.fullname" }}-env
+                    name: {{ include "common.names.fullname" . }}-env
                 - secretRef:
-                    name: {{ include "common.names.fullname" }}-secret
+                    name: {{ include "common.names.fullname" . }}-secret
               command:
               - /bin/sh
               - -c
