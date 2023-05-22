@@ -85,8 +85,8 @@ spec:
         - name: {{ .Chart.Name }}-data
           emptyDir: {}
         - name: {{ .Chart.Name }}-nginx-config
-            configMap:
-                name: {{ include "common.names.fullname" . }}-nginx-config
-                items:
+          configMap:
+            - name: {{ include "common.names.fullname" . }}-nginx-config
+              items:
                 - key: default.conf
                   path: default.conf
