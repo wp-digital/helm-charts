@@ -54,7 +54,7 @@ data:
   {{- else }}
   S3_UPLOADS_BUCKET_URL: https://{{ include "wp-project-skeleton.s3Bucket" . }}
   {{- end }}
-  {{ include "wp-project-skeleton.awsRegion" (list "S3_UPLOADS_REGION" .Values.app.s3UploadsRegion) }}
+  {{ include "wp-project-skeleton.awsRegion" (list "S3_UPLOADS_REGION" .Values.app.s3UploadsRegion .Values.app.awsRegion) }}
   {{- if .Values.app.redisHost }}
   WP_REDIS_HOST: {{ .Values.app.redisHost }}
   {{- else }}
@@ -85,12 +85,12 @@ data:
   INNCOGNITO_FORCE_COGNITO: {{ .Values.app.inncognitoForceCognito }}
   {{- end }}
   {{- end }}
-  {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_IMAGE_REGION" .Values.app.awsLambdaImageRegion) }}
+  {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_IMAGE_REGION" .Values.app.awsLambdaImageRegion .Values.app.awsRegion) }}
   {{- if .Values.app.awsLambdaImageFunction }}
   AWS_LAMBDA_IMAGE_FUNCTION: {{ .Values.app.awsLambdaImageFunction }}
   {{- end }}
-  {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_CRITICAL_CSS_REGION" .Values.app.awsLambdaCriticalCssRegion) }}
-  {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_PRERENDER_REGION" .Values.app.awsLambdaPrerenderRegion) }}
+  {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_CRITICAL_CSS_REGION" .Values.app.awsLambdaCriticalCssRegion .Values.app.awsRegion) }}
+  {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_PRERENDER_REGION" .Values.app.awsLambdaPrerenderRegion .Values.app.awsRegion) }}
   {{- range $key, $value := .Values.env }}
   {{ $key }}: {{ $value | quote }}
   {{- end }}

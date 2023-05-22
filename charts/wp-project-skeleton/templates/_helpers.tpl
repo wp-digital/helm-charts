@@ -20,10 +20,11 @@ Default AWS region.
 {{- define "wp-project-skeleton.awsRegion" -}}
 {{- $key := index . 0 -}}
 {{- $value := index . 1 -}}
+{{- $default := index . 2 -}}
 {{- if $value -}}
 {{ $key }}: {{ $value }}
 {{- else -}}
-{{ $key }}: {{ .Values.app.awsRegion | quote }}
+{{ $key }}: {{ $default }}
 {{- end -}}
 {{- end -}}
 
@@ -34,8 +35,6 @@ Project internal name.
 {{- $name := hasSuffix "-stage" .Release.Name | ternary (trimSuffix "-stage" .Release.Name) (trimSuffix "-prod" .Release.Name) -}}
 {{- printf "%s" $name -}}
 {{- end -}}
-
-{{/*
 
 {{/*
 Default S3 bucket.
