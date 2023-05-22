@@ -139,7 +139,7 @@ data:
         {{- end }}
 
         {{- if .Values.nginx.additionalConfiguration }}
-        {{ .Values.nginx.additionalConfiguration | nindent 8 }}
+        {{- .Values.nginx.additionalConfiguration | nindent 8 }}
         {{- end }}
 
         location / {

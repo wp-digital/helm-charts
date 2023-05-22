@@ -32,7 +32,7 @@ Project internal name.
 */}}
 {{- define "wp-project-skeleton.name" -}}
 {{- $name := hasSuffix "-stage" .Release.Name | ternary (trimSuffix "-stage" .Release.Name) (trimSuffix "-prod" .Release.Name) -}}
-{{- print $name -}}
+{{- printf "%s" $name -}}
 {{- end -}}
 
 {{/*
@@ -42,5 +42,5 @@ Default S3 bucket.
 */}}
 {{- define "wp-project-skeleton.s3Bucket" }}
 {{- $subPath := hasSuffix "-stage" .Release.Name | ternary "/stage" "" -}}
-{{- printf "media.wpd.digital/%s%s" (include "wp-project-skeleton.name") $subPath -}}
+{{- printf "media.wpd.digital/%s%s" (include "wp-project-skeleton.name" .) $subPath -}}
 {{- end -}}

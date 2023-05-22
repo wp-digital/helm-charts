@@ -35,7 +35,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: {{ include "wp-project-skeleton.image" . }}
-          imagePullPolicy: {{- include "common.tplvalues.render" (dict "value" .Values.image.pullPolicy "context" $) }}
+          imagePullPolicy: {{ include "common.tplvalues.render" (dict "value" .Values.image.pullPolicy "context" $) }}
           envFrom:
             - configMapRef:
                 name: {{ include "common.names.fullname" . }}-env
@@ -65,7 +65,7 @@ spec:
               name: {{ .Chart.Name }}-data
         - name: {{ .Chart.Name }}-nginx
           image: {{ include "wp-project-skeleton.nginx.image" . }}
-          imagePullPolicy: {{- include "common.tplvalues.render" (dict "value" .Values.nginx.image.pullPolicy "context" $) }}
+          imagePullPolicy: {{ include "common.tplvalues.render" (dict "value" .Values.nginx.image.pullPolicy "context" $) }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
