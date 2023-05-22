@@ -1,4 +1,4 @@
-{{- if .Values.cronSchedule }}
+{{- if .Values.cron.enabled }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.cronSchedule }}
+  schedule: {{ .Values.cron.schedule | quote }}
   jobTemplate:
     spec:
       template:

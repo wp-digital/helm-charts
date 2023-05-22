@@ -30,7 +30,9 @@ resources:
     cpu: 500m
     memory: 256Mi
 
-cronSchedule: "*/5 * * * *"
+cron:
+  enabled: true
+  schedule: "*/5 * * * *"
 
 service:
   type: ClusterIP
