@@ -22,9 +22,9 @@ Default AWS region.
 {{- $value := index . 1 -}}
 {{- $default := index . 2 -}}
 {{- if $value -}}
-{{ $key }}: {{ $value }}
+{{ $key }}: {{ $value | quote }}
 {{- else -}}
-{{ $key }}: {{ $default }}
+{{ $key }}: {{ $default | quote }}
 {{- end -}}
 {{- end -}}
 

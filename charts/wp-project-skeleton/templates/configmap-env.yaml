@@ -6,25 +6,25 @@ metadata:
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 data:
   {{- if .Values.app.homeUrl }}
-  WP_HOME: {{ .Values.app.homeUrl }}
+  WP_HOME: {{ .Values.app.homeUrl | quote }}
   {{- else }}
   WP_HOME: "https://{{ .Values.ingress.hostname }}"
   {{- end }}
   {{- if .Values.app.siteUrl }}
-  WP_SITEURL: {{ .Values.app.siteUrl }}
+  WP_SITEURL: {{ .Values.app.siteUrl | quote }}
   {{- end }}
-  ENVIRONMENT: {{ .Values.app.environment }}
-  DEBUG: {{ .Values.app.debug }}
+  ENVIRONMENT: {{ .Values.app.environment | quote }}
+  DEBUG: {{ .Values.app.debug | quote }}
   {{- if .Values.app.multisite }}
-  WP_ALLOW_MULTISITE: {{ .Values.app.multisite }}
-  MULTISITE: {{ .Values.app.multisite }}
+  WP_ALLOW_MULTISITE: {{ .Values.app.multisite | quote }}
+  MULTISITE: {{ .Values.app.multisite | quote }}
   {{- if .Values.app.domainCurrentSite }}
-  DOMAIN_CURRENT_SITE: {{ .Values.app.domainCurrentSite }}
+  DOMAIN_CURRENT_SITE: {{ .Values.app.domainCurrentSite | quote }}
   {{- else }}
   DOMAIN_CURRENT_SITE: {{ .Values.ingress.hostname | quote }}
   {{- end }}
   {{- end }}
-  WP_CACHE: {{ .Values.app.cache }}
+  WP_CACHE: {{ .Values.app.cache | quote }}
   AUTH_KEY: {{ required "AUTH_KEY" .Values.app.authKey | quote }}
   SECURE_AUTH_KEY: {{ required "SECURE_AUTH_KEY" .Values.app.secureAuthKey | quote }}
   LOGGED_IN_KEY: {{ required "LOGGED_IN_KEY" .Values.app.loggedInKey | quote }}
@@ -35,59 +35,59 @@ data:
   NONCE_SALT: {{ required "NONCE_SALT" .Values.app.nonceSalt | quote }}
   MAIL_FROM_NAME: {{ required "MAIL_FROM_NAME" .Values.app.mailFromName | quote }}
   {{- if .Values.app.dbName }}
-  DB_NAME: {{ .Values.app.dbName }}
+  DB_NAME: {{ .Values.app.dbName | quote }}
   {{- else }}
   DB_NAME: {{ include "wp-project-skeleton.name" . }}
   {{- end }}
   {{- if .Values.app.dbUser }}
-  DB_USER: {{ .Values.app.dbUser }}
+  DB_USER: {{ .Values.app.dbUser | quote }}
   {{- else }}
   DB_USER: {{ include "wp-project-skeleton.name" . }}
   {{- end }}
   {{- if .Values.app.s3UploadsBucket }}
-  S3_UPLOADS_BUCKET: {{ .Values.app.s3UploadsBucket }}
+  S3_UPLOADS_BUCKET: {{ .Values.app.s3UploadsBucket | quote }}
   {{- else }}
   S3_UPLOADS_BUCKET: {{ include "wp-project-skeleton.s3Bucket" . }}
   {{- end }}
   {{- if .Values.app.s3UploadsBucketUrl }}
-  S3_UPLOADS_BUCKET_URL: {{ .Values.app.s3UploadsBucketUrl }}
+  S3_UPLOADS_BUCKET_URL: {{ .Values.app.s3UploadsBucketUrl | quote }}
   {{- else }}
-  S3_UPLOADS_BUCKET_URL: "https://{{ include "wp-project-skeleton.s3Bucket" . }}"
+  S3_UPLOADS_BUCKET_URL: "https://"{{ include "wp-project-skeleton.s3Bucket" . }}
   {{- end }}
   {{ include "wp-project-skeleton.awsRegion" (list "S3_UPLOADS_REGION" .Values.app.s3UploadsRegion .Values.app.awsRegion) }}
   {{- if .Values.app.redisHost }}
-  WP_REDIS_HOST: {{ .Values.app.redisHost }}
+  WP_REDIS_HOST: {{ .Values.app.redisHost | quote }}
   {{- else }}
-  WP_REDIS_HOST: {{ .Release.Name }}-redis-master
+  WP_REDIS_HOST: "{{ .Release.Name }}-redis-master"
   {{- end }}
   {{- if .Values.app.redisPrefix }}
-  WP_REDIS_PREFIX: {{ .Values.app.redisPrefix }}
+  WP_REDIS_PREFIX: {{ .Values.app.redisPrefix | quote }}
   {{- else }}
-  WP_REDIS_PREFIX: {{ .Release.Name }}
+  WP_REDIS_PREFIX: {{ .Release.Name | quote }}
   {{- end }}
   {{- if .Values.app.cdnDomain }}
-  CDN_DOMAIN: {{ .Values.app.cdnDomain }}
+  CDN_DOMAIN: {{ .Values.app.cdnDomain | quote }}
   {{- else }}
-  CDN_DOMAIN: {{ hasSuffix "-stage" .Release.Name | ternary .Release.Name (trimSuffix "-prod" .Release.Name) }}.wpd.digital
+  CDN_DOMAIN: "{{ hasSuffix "-stage" .Release.Name | ternary .Release.Name (trimSuffix "-prod" .Release.Name) }}.wpd.digital"
   {{- end }}
   {{- if .Values.app.newrelicDaemonAddress }}
-  NEWRELIC_DAEMON_ADDRESS: {{ .Values.app.newrelicDaemonAddress }}
+  NEWRELIC_DAEMON_ADDRESS: {{ .Values.app.newrelicDaemonAddress | quote }}
   {{- else }}
   NEWRELIC_DAEMON_ADDRESS: "{{ .Release.Name }}-newrelic-php-agent:{{ index .Values "newrelic-php-agent" "service" "port" }}"
   {{- end }}
   {{- if .Values.app.inncognitoDomain }}
-  INNCOGNITO_DOMAIN: {{ .Values.app.inncognitoDomain }}
+  INNCOGNITO_DOMAIN: {{ .Values.app.inncognitoDomain | quote }}
   {{ include "wp-project-skeleton.awsRegion" (list "INNCOGNITO_REGION" .Values.app.inncognitoRegion .Values.app.awsRegion) }}
   {{- if .Values.app.inncognitoRedirectUri }}
-  INNCOGNITO_REDIRECT_URI: {{ .Values.app.inncognitoRedirectUri }}
+  INNCOGNITO_REDIRECT_URI: {{ .Values.app.inncognitoRedirectUri | quote }}
   {{- end }}
   {{- if .Values.app.inncognitoForceCognito }}
-  INNCOGNITO_FORCE_COGNITO: {{ .Values.app.inncognitoForceCognito }}
+  INNCOGNITO_FORCE_COGNITO: {{ .Values.app.inncognitoForceCognito | quote }}
   {{- end }}
   {{- end }}
   {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_IMAGE_REGION" .Values.app.awsLambdaImageRegion .Values.app.awsRegion) }}
   {{- if .Values.app.awsLambdaImageFunction }}
-  AWS_LAMBDA_IMAGE_FUNCTION: {{ .Values.app.awsLambdaImageFunction }}
+  AWS_LAMBDA_IMAGE_FUNCTION: {{ .Values.app.awsLambdaImageFunction | quote }}
   {{- end }}
   {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_CRITICAL_CSS_REGION" .Values.app.awsLambdaCriticalCssRegion .Values.app.awsRegion) }}
   {{ include "wp-project-skeleton.awsRegion" (list "AWS_LAMBDA_PRERENDER_REGION" .Values.app.awsLambdaPrerenderRegion .Values.app.awsRegion) }}
