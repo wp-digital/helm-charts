@@ -37,22 +37,22 @@ data:
   {{- if .Values.app.dbName }}
   DB_NAME: {{ .Values.app.dbName }}
   {{- else }}
-  DB_NAME: {{ include "wp-project-skeleton.name" }}
+  DB_NAME: {{ include "wp-project-skeleton.name" . }}
   {{- end }}
   {{- if .Values.app.dbUser }}
   DB_USER: {{ .Values.app.dbUser }}
   {{- else }}
-  DB_USER: {{ include "wp-project-skeleton.name" }}
+  DB_USER: {{ include "wp-project-skeleton.name" . }}
   {{- end }}
   {{- if .Values.app.s3UploadsBucket }}
   S3_UPLOADS_BUCKET: {{ .Values.app.s3UploadsBucket }}
   {{- else }}
-  S3_UPLOADS_BUCKET: {{ include "wp-project-skeleton.s3Bucket" }}
+  S3_UPLOADS_BUCKET: {{ include "wp-project-skeleton.s3Bucket" . }}
   {{- end }}
   {{- if .Values.app.s3UploadsBucketUrl }}
   S3_UPLOADS_BUCKET_URL: {{ .Values.app.s3UploadsBucketUrl }}
   {{- else }}
-  S3_UPLOADS_BUCKET_URL: https://{{ include "wp-project-skeleton.s3Bucket" }}
+  S3_UPLOADS_BUCKET_URL: https://{{ include "wp-project-skeleton.s3Bucket" . }}
   {{- end }}
   {{ include "wp-project-skeleton.awsRegion" (list "S3_UPLOADS_REGION" .Values.app.s3UploadsRegion) }}
   {{- if .Values.app.redisHost }}
