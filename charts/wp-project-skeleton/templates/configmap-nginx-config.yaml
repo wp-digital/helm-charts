@@ -124,6 +124,20 @@ data:
           root /usr/share/nginx/html;
         }
 
+        {{- if .Values.app.multisite }}
+        if (!-e $request_filename) {
+          rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+          rewrite ^(/[^/]+)?(/wp-.*) /wp$2 last;
+          rewrite ^(/[^/]+)?(/.*.php) /wp$2 last;
+        }
+        {{- end }}
+
+        {{- if .Values.nginx.s3Rewrite }}
+        location ^~ /wp-content/uploads/ {
+          rewrite ^/wp-content/uploads/(.*)$ https://{{ include "wp-project-skeleton.s3Bucket" }}/$1 permanent;
+        }
+        {{- end }}
+
         {{- if .Values.nginx.additionalConfiguration }}
         {{ .Values.nginx.additionalConfiguration | nindent 8 }}
         {{- end }}

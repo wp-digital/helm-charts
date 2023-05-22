@@ -78,6 +78,7 @@ nginx:
       memory: 128Mi
   clientMaxBodySize: 100M
   disallowRobots: false
+  s3Rewrite: true
   additionalConfiguration: |
     # Add custom NGINX configuration here
 
@@ -106,6 +107,8 @@ app:
   siteUrl: "" # Defaults to homeUrl + /wp.
   environment: production
   debug: false
+  multisite: false
+  domainCurrentSite: "" # Defaults to ingress hostname.
   cache: true
   authKey: "" # Required.
   secureAuthKey: "" # Required.

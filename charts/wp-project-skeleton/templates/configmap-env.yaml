@@ -5,8 +5,6 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 data:
-  {{- $projectName := hasSuffix "-stage" .Release.Name | ternary (trimSuffix "-stage" .Release.Name) (trimSuffix "-prod" .Release.Name) }}
-  {{- $bucketSubPath := hasSuffix "-stage" .Release.Name | ternary "/stage" "" }}
   {{- if .Values.app.homeUrl }}
   WP_HOME: {{ .Values.app.homeUrl }}
   {{- else }}
@@ -17,6 +15,15 @@ data:
   {{- end }}
   ENVIRONMENT: {{ .Values.app.environment }}
   DEBUG: {{ .Values.app.debug }}
+  {{- if .Values.app.multisite }}
+  WP_ALLOW_MULTISITE: {{ .Values.app.multisite }}
+  MULTISITE: {{ .Values.app.multisite }}
+  {{- if .Values.app.domainCurrentSite }}
+  DOMAIN_CURRENT_SITE: {{ .Values.app.domainCurrentSite }}
+  {{- else }}
+  DOMAIN_CURRENT_SITE: {{ .Values.ingress.hostname }}
+  {{- end }}
+  {{- end }}
   WP_CACHE: {{ .Values.app.cache }}
   AUTH_KEY: {{ required "AUTH_KEY" .Values.app.authKey }}
   SECURE_AUTH_KEY: {{ required "SECURE_AUTH_KEY" .Values.app.secureAuthKey }}
@@ -30,22 +37,22 @@ data:
   {{- if .Values.app.dbName }}
   DB_NAME: {{ .Values.app.dbName }}
   {{- else }}
-  DB_NAME: {{ $projectName }}
+  DB_NAME: {{- include "wp-project-skeleton.name" }}
   {{- end }}
   {{- if .Values.app.dbUser }}
   DB_USER: {{ .Values.app.dbUser }}
   {{- else }}
-  DB_USER: {{ $projectName }}
+  DB_USER: {{- include "wp-project-skeleton.name" }}
   {{- end }}
   {{- if .Values.app.s3UploadsBucket }}
   S3_UPLOADS_BUCKET: {{ .Values.app.s3UploadsBucket }}
   {{- else }}
-  S3_UPLOADS_BUCKET: media.wpd.digital/{{ $projectName }}{{ $bucketSubPath }}
+  S3_UPLOADS_BUCKET: {{- include "wp-project-skeleton.s3Bucket" }}
   {{- end }}
   {{- if .Values.app.s3UploadsBucketUrl }}
   S3_UPLOADS_BUCKET_URL: {{ .Values.app.s3UploadsBucketUrl }}
   {{- else }}
-  S3_UPLOADS_BUCKET_URL: https://media.wpd.digital/{{ $projectName }}{{ $bucketSubPath }}
+  S3_UPLOADS_BUCKET_URL: https://{{- include "wp-project-skeleton.s3Bucket" }}
   {{- end }}
   {{- include "wp-project-skeleton.awsRegion" (list "S3_UPLOADS_REGION" .Values.app.s3UploadsRegion) }}
   {{- if .Values.app.redisHost }}
