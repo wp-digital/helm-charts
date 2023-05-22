@@ -8,7 +8,7 @@ data:
   {{- if .Values.app.homeUrl }}
   WP_HOME: {{ .Values.app.homeUrl }}
   {{- else }}
-  WP_HOME: https://{{ .Values.ingress.hostname }}
+  WP_HOME: "https://{{ .Values.ingress.hostname }}"
   {{- end }}
   {{- if .Values.app.siteUrl }}
   WP_SITEURL: {{ .Values.app.siteUrl }}
@@ -21,19 +21,19 @@ data:
   {{- if .Values.app.domainCurrentSite }}
   DOMAIN_CURRENT_SITE: {{ .Values.app.domainCurrentSite }}
   {{- else }}
-  DOMAIN_CURRENT_SITE: {{ .Values.ingress.hostname }}
+  DOMAIN_CURRENT_SITE: {{ .Values.ingress.hostname | quote }}
   {{- end }}
   {{- end }}
   WP_CACHE: {{ .Values.app.cache }}
-  AUTH_KEY: {{ required "AUTH_KEY" .Values.app.authKey }}
-  SECURE_AUTH_KEY: {{ required "SECURE_AUTH_KEY" .Values.app.secureAuthKey }}
-  LOGGED_IN_KEY: {{ required "LOGGED_IN_KEY" .Values.app.loggedInKey }}
-  NONCE_KEY: {{ required "NONCE_KEY" .Values.app.nonceKey }}
-  AUTH_SALT: {{ required "AUTH_SALT" .Values.app.authSalt }}
-  SECURE_AUTH_SALT: {{ required "SECURE_AUTH_SALT" .Values.app.secureAuthSalt }}
-  LOGGED_IN_SALT: {{ required "LOGGED_IN_SALT" .Values.app.loggedInSalt }}
-  NONCE_SALT: {{ required "NONCE_SALT" .Values.app.nonceSalt }}
-  MAIL_FROM_NAME: {{ required "MAIL_FROM_NAME" .Values.app.mailFromName }}
+  AUTH_KEY: {{ required "AUTH_KEY" .Values.app.authKey | quote }}
+  SECURE_AUTH_KEY: {{ required "SECURE_AUTH_KEY" .Values.app.secureAuthKey | quote }}
+  LOGGED_IN_KEY: {{ required "LOGGED_IN_KEY" .Values.app.loggedInKey | quote }}
+  NONCE_KEY: {{ required "NONCE_KEY" .Values.app.nonceKey | quote }}
+  AUTH_SALT: {{ required "AUTH_SALT" .Values.app.authSalt | quote }}
+  SECURE_AUTH_SALT: {{ required "SECURE_AUTH_SALT" .Values.app.secureAuthSalt | quote }}
+  LOGGED_IN_SALT: {{ required "LOGGED_IN_SALT" .Values.app.loggedInSalt | quote }}
+  NONCE_SALT: {{ required "NONCE_SALT" .Values.app.nonceSalt | quote }}
+  MAIL_FROM_NAME: {{ required "MAIL_FROM_NAME" .Values.app.mailFromName | quote }}
   {{- if .Values.app.dbName }}
   DB_NAME: {{ .Values.app.dbName }}
   {{- else }}
@@ -52,7 +52,7 @@ data:
   {{- if .Values.app.s3UploadsBucketUrl }}
   S3_UPLOADS_BUCKET_URL: {{ .Values.app.s3UploadsBucketUrl }}
   {{- else }}
-  S3_UPLOADS_BUCKET_URL: https://{{ include "wp-project-skeleton.s3Bucket" . }}
+  S3_UPLOADS_BUCKET_URL: "https://{{ include "wp-project-skeleton.s3Bucket" . }}"
   {{- end }}
   {{ include "wp-project-skeleton.awsRegion" (list "S3_UPLOADS_REGION" .Values.app.s3UploadsRegion .Values.app.awsRegion) }}
   {{- if .Values.app.redisHost }}
