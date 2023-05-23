@@ -6,13 +6,10 @@ metadata:
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 data:
   default.conf: |-
-    # Mime types
-    include /etc/nginx/mime.types;
-
     # Logging format
-    log_format main '$http_x_real_ip [$time_local] "$request" '
-                    '$status $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for" "$http_x_amzn_trace_id"';
+    log_format wp_project_skeleton '$http_x_real_ip [$time_local] "$request" '
+                                   '$status $body_bytes_sent "$http_referer" '
+                                   '"$http_user_agent" "$http_x_forwarded_for" "$http_x_amzn_trace_id"';
 
     # Hide version
     server_tokens off;
@@ -67,7 +64,7 @@ data:
 
       server_name _;
 
-      access_log /var/log/nginx/access.log main;
+      access_log /var/log/nginx/access.log wp_project_skeleton;
       error_log /var/log/nginx/error.log;
 
       root /var/www/html/public;
