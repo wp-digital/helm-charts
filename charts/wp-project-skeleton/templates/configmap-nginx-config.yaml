@@ -130,7 +130,7 @@ data:
 
       {{- if .Values.nginx.s3Rewrite }}
       location ^~ /wp-content/uploads/ {
-        rewrite ^/wp-content/uploads/(.*)$ https://{{ include "wp-project-skeleton.s3Bucket" . }}/$1 permanent;
+        rewrite ^/wp-content/uploads/(.*)$ https://{{ include "wp-project-skeleton.s3Bucket" . }}/uploads/$1 permanent;
       }
       {{- end }}
 
