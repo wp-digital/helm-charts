@@ -146,7 +146,7 @@ data:
 
       location ~ \.php$ {
         try_files $uri =404;
-        include fastcgi.conf;
+        include fastcgi_params;
         fastcgi_intercept_errors on;
         fastcgi_param HTTP_X_REQUEST_START "t=${msec}";
         fastcgi_param REQUEST_METHOD $request_method;
