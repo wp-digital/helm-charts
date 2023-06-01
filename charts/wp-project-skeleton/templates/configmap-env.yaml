@@ -12,6 +12,8 @@ data:
   {{- end }}
   {{- if .Values.app.siteUrl }}
   WP_SITEURL: {{ .Values.app.siteUrl | quote }}
+  {{- else if .Values.app.multisite }}
+  WP_SITEURL: "https://{{ .Values.ingress.hostname }}"
   {{- end }}
   ENVIRONMENT: {{ .Values.app.environment | quote }}
   DEBUG: {{ .Values.app.debug | quote }}
