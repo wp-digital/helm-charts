@@ -141,7 +141,7 @@ app:
   awsLambdaPrerenderRegion: "" # Defaults to awsRegion.
 
 # Set custom environment variables for the container.
-env: []
+env: {}
 
 livenessProbe:
   enabled: true
