@@ -149,6 +149,9 @@ livenessProbe:
   httpGet:
     path: /wp/wp-admin/install.php
     port: http
+  httpHeaders:
+    - name: X-Probe-Header
+      value: liveness
   initialDelaySeconds: 120
   periodSeconds: 10
   timeoutSeconds: 5
@@ -159,6 +162,9 @@ readinessProbe:
   httpGet:
     path: /wp/wp-login.php
     port: http
+  httpHeaders:
+    - name: X-Probe-Header
+      value: readiness
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5

@@ -147,7 +147,17 @@ data:
       location ~ \.php$ {
         # Redirect to canonical domain
         {{- if .Values.nginx.canonicalHostname }}
-        if ($host != "{{ .Values.nginx.canonicalHostname }}") {
+        set $redirect 1;
+        if ($host = "{{ .Values.nginx.canonicalHostname }}") {
+          set $redirect 0;
+        }
+        if ($http_x_probe_header = "liveness") {
+          set $redirect 0;
+        }
+        if ($http_x_probe_header = "readiness") {
+          set $redirect 0;
+        }
+        if ($redirect = 1) {
           rewrite ^/(.*)$ $scheme://{{ .Values.nginx.canonicalHostname }}/$1 permanent;
         }
         {{- end }}
