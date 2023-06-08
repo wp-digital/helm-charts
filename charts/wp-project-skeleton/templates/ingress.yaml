@@ -6,6 +6,12 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
+    {{- if .Values.ingress.canonicalHostname }}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host != {{ tpl .Values.ingress.canonicalHostname $ | quote }}) {
+          return 301 {{ tpl .Values.ingress.canonicalHostname $ | quote }}$request_uri;
+      }
+    {{- end }}
     {{- if .Values.ingress.annotations }}
     {{- include "common.tplvalues.render" (dict "value" .Values.ingress.annotations "context" $) | nindent 4 }}
     {{- end }}

@@ -54,6 +54,7 @@ ingress:
   extraTls: []
   secrets: []
   extraRules: []
+  canonicalHostname: ""
 
 pdb:
   create: true
