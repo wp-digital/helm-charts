@@ -158,7 +158,7 @@ data:
           set $redirect 0;
         }
         if ($redirect = 1) {
-          rewrite ^/(.*)$ $scheme://{{ .Values.nginx.canonicalHostname }}/$1 permanent;
+          return 301 $scheme://{{ .Values.nginx.canonicalHostname }}$request_uri;
         }
         {{- end }}
         try_files $uri =404;
