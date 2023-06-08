@@ -81,7 +81,6 @@ nginx:
   clientMaxBodySize: 100M
   disallowRobots: false
   s3Rewrite: true
-  canonicalHost: ""
   additionalConfiguration: |
     # Add custom NGINX configuration here
 
