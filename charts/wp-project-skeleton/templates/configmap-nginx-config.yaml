@@ -151,6 +151,10 @@ data:
         fastcgi_param HTTP_X_REQUEST_START "t=${msec}";
         fastcgi_param REQUEST_METHOD $request_method;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        {{- if .Values.nginx.canonicalHost }}
+        fastcgi_param SERVER_NAME {{ .Values.nginx.canonicalHost | quote }};
+        fastcgi_param HTTP_HOST {{ .Values.nginx.canonicalHost | quote }};
+        {{- end }}
         fastcgi_index index.php;
         fastcgi_pass 127.0.0.1:9000;
         fastcgi_read_timeout 300;

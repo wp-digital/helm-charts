@@ -54,7 +54,6 @@ ingress:
   extraTls: []
   secrets: []
   extraRules: []
-  canonicalHostname: ""
 
 pdb:
   create: true
@@ -82,6 +81,7 @@ nginx:
   clientMaxBodySize: 100M
   disallowRobots: false
   s3Rewrite: true
+  canonicalHost: ""
   additionalConfiguration: |
     # Add custom NGINX configuration here
 
