@@ -151,10 +151,10 @@ data:
         if ($host = "{{ .Values.nginx.canonicalHostname }}") {
           set $redirect 0;
         }
-        if ($http_x_probe_header = "liveness") {
+        if ($http_health_probe = "liveness") {
           set $redirect 0;
         }
-        if ($http_x_probe_header = "readiness") {
+        if ($http_health_probe = "readiness") {
           set $redirect 0;
         }
         if ($redirect = 1) {
