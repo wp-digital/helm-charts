@@ -9,7 +9,7 @@ metadata:
     {{- if .Values.ingress.canonicalHostname }}
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($host != {{ tpl .Values.ingress.canonicalHostname $ | quote }}) {
-          return 301 {{ tpl .Values.ingress.canonicalHostname $ | quote }}$request_uri;
+          return 301 $scheme://{{ tpl .Values.ingress.canonicalHostname $ | quote }}$request_uri;
       }
     {{- end }}
     {{- if .Values.ingress.annotations }}
