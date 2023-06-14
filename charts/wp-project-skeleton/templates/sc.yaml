@@ -2,12 +2,12 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: {{ .Values.persistence.storageClass }}
+  name: {{ .Values.persistence.storageClass | quote }}
   namespace: {{ .Release.Namespace | quote }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
 provisioner: efs.csi.aws.com
 parameters:
   provisioningMode: efs-ap
   fileSystemId: {{ .Values.persistence.fileSystemId }}
-  directoryPerms: {{ .Values.persistence.directoryPerms }}
+  directoryPerms: {{ .Values.persistence.directoryPerms | quote }}
 {{- end }}
