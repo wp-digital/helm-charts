@@ -64,7 +64,7 @@ spec:
             - mountPath: /var/www/html
               name: {{ .Chart.Name }}-data
             {{- if .Values.persistence.fileSystemId }}
-            - mountPath: {{ .Values.persistence.path }}
+            - mountPath: "/var/www/html{{ .Values.persistence.path }}"
               name: {{ .Chart.Name }}-efs
             {{- end }}
         - name: {{ .Chart.Name }}-nginx
@@ -91,7 +91,7 @@ spec:
               subPath: default.conf
               readOnly: true
             {{- if .Values.persistence.fileSystemId }}
-            - mountPath: {{ .Values.persistence.path }}
+            - mountPath: "/var/www/html{{ .Values.persistence.path }}"
               name: {{ .Chart.Name }}-efs
             {{- end }}
       volumes:
