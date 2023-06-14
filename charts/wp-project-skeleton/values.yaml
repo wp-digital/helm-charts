@@ -175,7 +175,7 @@ persistence:
   fileSystemId: ""
   accessMode: ReadWriteMany
   size: 2Gi
-  storageClass: ""
+  storageClass: efs-sc
   reclaimPolicy: Retain
   directoryPerms: "755"
   annotations: {}
