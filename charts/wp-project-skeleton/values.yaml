@@ -176,7 +176,5 @@ persistence:
   accessMode: ReadWriteMany
   size: 2Gi
   storageClass: efs-sc
-  reclaimPolicy: Retain
-  directoryPerms: "755"
   annotations: {}
   path: ""

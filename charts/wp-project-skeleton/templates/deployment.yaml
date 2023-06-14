@@ -103,5 +103,5 @@ spec:
         {{- if .Values.persistence.fileSystemId }}
         - name: {{ .Chart.Name }}-efs
           persistentVolumeClaim:
-            claimName: {{ include "common.names.fullname" . }}-efc-claim
+            claimName: {{ include "common.names.fullname" . }}-efs-claim
         {{- end }}
