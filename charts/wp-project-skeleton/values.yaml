@@ -170,3 +170,13 @@ readinessProbe:
   timeoutSeconds: 5
   failureThreshold: 6
   successThreshold: 1
+
+persistence:
+  fileSystemId: ""
+  accessMode: ReadWriteMany
+  size: 2Gi
+  storageClass: ""
+  reclaimPolicy: Retain
+  directoryPerms: "755"
+  annotations: {}
+  path: ""

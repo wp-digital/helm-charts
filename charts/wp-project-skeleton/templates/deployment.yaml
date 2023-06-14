@@ -86,9 +86,18 @@ spec:
               name: {{ .Chart.Name }}-nginx-config
               subPath: default.conf
               readOnly: true
+            {{- if .Values.persistence.fileSystemId }}
+            - mountPath: {{ .Values.persistence.path }}
+              name: {{ .Chart.Name }}-efs
+            {{- end }}
       volumes:
         - name: {{ .Chart.Name }}-data
           emptyDir: {}
         - name: {{ .Chart.Name }}-nginx-config
           configMap:
             name: {{ include "common.names.fullname" . }}-nginx-config
+        {{- if .Values.persistence.fileSystemId }}
+        - name: {{ .Chart.Name }}-efs
+          persistentVolumeClaim:
+            claimName: {{ include "common.names.fullname" . }}-efc-claim
+        {{- end }}

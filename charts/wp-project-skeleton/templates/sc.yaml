@@ -1,0 +1,11 @@
+{{- if .Values.persistence.fileSystemId }}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ .Values.persistence.storageClass }}
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: {{ .Values.persistence.fileSystemId }}
+  directoryPerms: {{ .Values.persistence.directoryPerms }}
+{{- end }}
