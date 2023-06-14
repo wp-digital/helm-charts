@@ -5,6 +5,10 @@ metadata:
   name: {{ include "common.names.fullname" . }}-efs-claim
   namespace: {{ .Release.Namespace | quote }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
+  annotations:
+    {{- if .Values.persistence.annotations }}
+    {{- include "common.tplvalues.render" (dict "value" .Values.persistence.annotations "context" $) | nindent 4 }}
+    {{- end }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
