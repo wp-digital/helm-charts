@@ -63,6 +63,10 @@ spec:
           volumeMounts:
             - mountPath: /var/www/html
               name: {{ .Chart.Name }}-data
+            {{- if .Values.persistence.fileSystemId }}
+            - mountPath: {{ .Values.persistence.path }}
+              name: {{ .Chart.Name }}-efs
+            {{- end }}
         - name: {{ .Chart.Name }}-nginx
           image: {{ include "wp-project-skeleton.nginx.image" . }}
           imagePullPolicy: {{ include "common.tplvalues.render" (dict "value" .Values.nginx.image.pullPolicy "context" $) }}
