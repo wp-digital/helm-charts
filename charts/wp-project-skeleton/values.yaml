@@ -172,9 +172,9 @@ readinessProbe:
   successThreshold: 1
 
 persistence:
-  fileSystemId: ""
+  enabled: false
   accessMode: ReadWriteMany
-  size: 2Gi
-  storageClass: efs-sc
+  size: 5Gi
+  storageClass: ""
   annotations: {}
   path: ""

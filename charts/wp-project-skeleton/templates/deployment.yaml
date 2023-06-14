@@ -63,7 +63,7 @@ spec:
           volumeMounts:
             - mountPath: /var/www/html
               name: {{ .Chart.Name }}-data
-            {{- if .Values.persistence.fileSystemId }}
+            {{- if .Values.persistence.enabled }}
             - mountPath: "/var/www/html{{ .Values.persistence.path }}"
               name: {{ .Chart.Name }}-efs
             {{- end }}
@@ -90,7 +90,7 @@ spec:
               name: {{ .Chart.Name }}-nginx-config
               subPath: default.conf
               readOnly: true
-            {{- if .Values.persistence.fileSystemId }}
+            {{- if .Values.persistence.enabled }}
             - mountPath: "/var/www/html{{ .Values.persistence.path }}"
               name: {{ .Chart.Name }}-efs
             {{- end }}
@@ -100,7 +100,7 @@ spec:
         - name: {{ .Chart.Name }}-nginx-config
           configMap:
             name: {{ include "common.names.fullname" . }}-nginx-config
-        {{- if .Values.persistence.fileSystemId }}
+        {{- if .Values.persistence.enabled }}
         - name: {{ .Chart.Name }}-efs
           persistentVolumeClaim:
             claimName: {{ include "common.names.fullname" . }}-efs-claim
