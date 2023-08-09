@@ -1,26 +1,26 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "common.names.fullname" . }}-assets
-  namespace: {{ .Release.Namespace | quote }}
-  labels: {{- include "common.labels.standard" . | nindent 4 }}
+  name: { { include "common.names.fullname" . } }-assets
+  namespace: { { .Release.Namespace | quote } }
+  labels: { { - include "common.labels.standard" . | nindent 4 } }
   annotations:
     "helm.sh/hook": post-upgrade
     "helm.sh/hook-weight": "1"
 spec:
-      template:
-        spec:
-          restartPolicy: OnFailure
-          containers:
-            - name: {{ include "common.names.fullname" . }}-assets
-              image: { { include "wp-project-skeleton.image" . } }
-              imagePullPolicy: IfNotPresent
-              envFrom:
-                - configMapRef:
-                    name: { { include "common.names.fullname" . } }-env
-                - secretRef:
-                name: { { include "common.names.fullname" . } }-secret
-              command:
-              - /bin/sh
-              - -c
-              - /usr/src/html/bin/bump-assets-version
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: { { include "common.names.fullname" . } }-assets
+          image: { { include "wp-project-skeleton.image" . } }
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: { { include "common.names.fullname" . } }-env
+            - secretRef:
+            name: { { include "common.names.fullname" . } }-secret
+          command:
+            - /bin/sh
+            - -c
+            - /usr/src/html/bin/bump-assets-version
