@@ -158,7 +158,7 @@ data:
           set $redirect 0;
         }
         if ($redirect = 1) {
-          return 301 $scheme://{{ .Values.nginx.canonicalHostname }}$request_uri;
+          return 301 https://{{ .Values.nginx.canonicalHostname }}$request_uri;
         }
         {{- end }}
         try_files $uri =404;
