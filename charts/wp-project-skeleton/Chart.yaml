@@ -2,8 +2,8 @@ apiVersion: v2
 name: wp-project-skeleton
 description: A Helm chart to deploy WordPress project.
 type: application
-version: 0.5.12.https
-appVersion: "0.5.12.https"
+version: 0.5.12.1
+appVersion: "0.5.12.1"
 dependencies:
   - name: common
     version: 2.x.x
