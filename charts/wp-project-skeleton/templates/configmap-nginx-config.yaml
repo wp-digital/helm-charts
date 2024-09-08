@@ -143,7 +143,7 @@ data:
         # include the "?$args" part so non-default permalinks doesn't break when using query string
         try_files $uri $uri/ /index.php?$args;
       }
-      
+
       location ~ \.php$ {
         # Redirect to canonical domain
         {{- if .Values.nginx.canonicalHostname }}

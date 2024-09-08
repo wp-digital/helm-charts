@@ -74,7 +74,7 @@ data:
   {{- if .Values.app.cdnDomain }}
   CDN_DOMAIN: {{ .Values.app.cdnDomain | quote }}
   {{- else }}
-  CDN_DOMAIN: "{{ hasSuffix "-stage" .Release.Name | ternary .Release.Name (trimSuffix "-prod" .Release.Name) }}.wpdgr.com"
+  CDN_DOMAIN: "{{ hasSuffix "-stage" .Release.Name | ternary .Release.Name (trimSuffix "-prod" .Release.Name) }}.wpd.digital"
   {{- end }}
   {{- if .Values.app.newrelicDaemonAddress }}
   NEWRELIC_DAEMON_ADDRESS: {{ .Values.app.newrelicDaemonAddress | quote }}
