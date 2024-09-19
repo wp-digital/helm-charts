@@ -96,7 +96,8 @@ redis:
     replicaCount: 0
 
 newrelic-php-agent:
-  replicaCount: 1
+  autoscaling:
+    minReplicas: 1
   resources:
     limits:
       cpu: 100m
