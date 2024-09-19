@@ -2,6 +2,20 @@ apiVersion: v1
 entries:
   newrelic-php-agent:
   - apiVersion: v2
+    appVersion: 0.1.2
+    created: "2024-09-19T14:05:05.025604102Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    description: A Helm chart to deploy the New Relic PHP Agent.
+    digest: 46feeeb833ad0fb4f23ffc5578e865d160a1993ea11169e96fbedf2a582b9e7e
+    name: newrelic-php-agent
+    type: application
+    urls:
+    - https://github.com/wp-digital/helm-charts/releases/download/newrelic-php-agent-0.1.2/newrelic-php-agent-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 0.1.1
     created: "2023-04-26T14:23:09.637219251Z"
     description: A Helm chart to deploy the New Relic PHP Agent.
@@ -952,4 +966,4 @@ entries:
     urls:
     - https://github.com/wp-digital/helm-charts/releases/download/wp-project-skeleton-0.1.0/wp-project-skeleton-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-16T11:53:50.148009202Z"
+generated: "2024-09-19T14:05:05.171748858Z"
