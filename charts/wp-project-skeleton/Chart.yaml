@@ -1,16 +1,16 @@
 apiVersion: v2
-appVersion: 0.5.16
-dependencies:
-- name: common
-  repository: https://charts.bitnami.com/bitnami
-  version: 2.x.x
-- name: redis
-  repository: https://charts.bitnami.com/bitnami
-  version: 17.x.x
-- name: newrelic-php-agent
-  repository: https://wp-digital.github.io/helm-charts
-  version: 0.1.1
-description: A Helm chart to deploy WordPress project.
 name: wp-project-skeleton
+description: A Helm chart to deploy WordPress project.
 type: application
 version: 0.5.16
+appVersion: "0.5.16"
+dependencies:
+  - name: common
+    version: 2.x.x
+    repository: https://charts.bitnami.com/bitnami
+  - name: redis
+    version: 17.x.x
+    repository: https://charts.bitnami.com/bitnami
+  - name: newrelic-php-agent
+    version: 0.1.1
+    repository: https://wp-digital.github.io/helm-charts

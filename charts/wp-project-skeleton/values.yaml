@@ -125,8 +125,8 @@ app:
   dbName: "" # Defaults to internal subdomain name.
   dbUser: "" # Defaults to internal subdomain name.
   awsRegion: "" # Set default AWS region for all services.
-  s3UploadsBucket: "" # Defaults to media.wpd.digital with internal subdomain name in path.
-  s3UploadsBucketUrl: "" # Defaults to https://media.wpd.digital with internal subdomain name in path.
+  s3UploadsBucket: "" # Defaults to media.wpdgr.com with internal subdomain name in path.
+  s3UploadsBucketUrl: "" # Defaults to https://media.wpdgr.com with internal subdomain name in path.
   s3UploadsRegion: "" # Defaults to awsRegion.
   redisHost: "" # Defaults to release name + -redis-master.
   redisPrefix: "" # Defaults to release name.

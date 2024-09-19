@@ -9,4 +9,4 @@ dependencies:
   repository: https://wp-digital.github.io/helm-charts
   version: 0.1.1
 digest: sha256:b93ef54998f6c8b854d2bffabca7c6afa88c0966aedf85dddad0183cb7c8a23d
-generated: "2024-09-16T19:17:27.757100157+03:00"
+generated: "2024-09-19T16:09:00.925008599+03:00"
