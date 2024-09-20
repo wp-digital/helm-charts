@@ -41,5 +41,5 @@ Default S3 bucket.
 */}}
 {{- define "wp-project-skeleton.s3Bucket" }}
 {{- $subPath := hasSuffix "-stage" .Release.Name | ternary "/stage" "" -}}
-{{- printf "media.wpdgr.com/%s%s" (include "wp-project-skeleton.name" .) $subPath -}}
+{{- printf "media.wpd.digital/%s%s" (include "wp-project-skeleton.name" .) $subPath -}}
 {{- end -}}
