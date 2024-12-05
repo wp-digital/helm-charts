@@ -5,8 +5,5 @@ dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 17.17.1
-- name: newrelic-php-agent
-  repository: https://wp-digital.github.io/helm-charts
-  version: 0.1.1
-digest: sha256:5a75a2cbab9c51919dd8dd5a689b28f6e80bd10f2cc31b7324bca19ad64179f3
-generated: "2024-12-05T21:19:22.300711237+02:00"
+digest: sha256:80088972247fc305cf59481c0c9003af85ac407b951fb7ace3afbc2d67a8c6f9
+generated: "2024-12-05T21:41:38.139641676+02:00"
