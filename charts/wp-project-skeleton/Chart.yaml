@@ -9,7 +9,7 @@ dependencies:
     version: 2.x.x
     repository: https://charts.bitnami.com/bitnami
   - name: redis
-    version: 17.x.x
+    version: 22.x.x
     repository: https://charts.bitnami.com/bitnami
   - name: newrelic-php-agent
     version: 0.1.2
