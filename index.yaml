@@ -27,6 +27,26 @@ entries:
     version: 0.1.1
   wp-project-skeleton:
   - apiVersion: v2
+    appVersion: 0.5.18
+    created: "2025-10-06T07:48:17.162594962Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.x.x
+    - name: newrelic-php-agent
+      repository: https://wp-digital.github.io/helm-charts
+      version: 0.1.2
+    description: A Helm chart to deploy WordPress project.
+    digest: 6546c4dd99d9d732e356c193d68db4fa8a20ddf57d7f1d094b389fa4d740f175
+    name: wp-project-skeleton
+    type: application
+    urls:
+    - https://github.com/wp-digital/helm-charts/releases/download/wp-project-skeleton-0.5.18/wp-project-skeleton-0.5.18.tgz
+    version: 0.5.18
+  - apiVersion: v2
     appVersion: 0.5.17
     created: "2024-09-20T11:25:54.223006249Z"
     dependencies:
@@ -986,4 +1006,4 @@ entries:
     urls:
     - https://github.com/wp-digital/helm-charts/releases/download/wp-project-skeleton-0.1.0/wp-project-skeleton-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-20T11:25:54.223384043Z"
+generated: "2025-10-06T07:48:17.16298268Z"
