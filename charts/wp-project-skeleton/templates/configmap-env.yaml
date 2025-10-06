@@ -76,11 +76,6 @@ data:
   {{- else }}
   CDN_DOMAIN: "{{ hasSuffix "-stage" .Release.Name | ternary .Release.Name (trimSuffix "-prod" .Release.Name) }}.wpdgr.com"
   {{- end }}
-  {{- if .Values.app.newrelicDaemonAddress }}
-  NEWRELIC_DAEMON_ADDRESS: {{ .Values.app.newrelicDaemonAddress | quote }}
-  {{- else }}
-  NEWRELIC_DAEMON_ADDRESS: "{{ .Release.Name }}-newrelic-php-agent:{{ index .Values "newrelic-php-agent" "service" "port" }}"
-  {{- end }}
   {{- if .Values.app.inncognitoDomain }}
   INNCOGNITO_DOMAIN: {{ .Values.app.inncognitoDomain | quote }}
   {{ include "wp-project-skeleton.awsRegion" (list "INNCOGNITO_REGION" .Values.app.inncognitoRegion .Values.app.awsRegion) }}
